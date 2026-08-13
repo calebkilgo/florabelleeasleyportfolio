@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flora Belle — Public Relations Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Karla:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="loader" id="loader">
+    <span class="loader-name">Flora Belle</span>
+  </div>
+
+  <div class="cursor" id="cursor"></div>
+
+  <header class="nav" id="nav">
+    <a href="#top" class="nav-logo">fb<span class="accent">.</span></a>
+    <nav class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+      <p class="eyebrow reveal">Public relations · Broadcasting · Storytelling</p>
+      <h1 class="hero-name">
+        <span class="line"><span class="word">Flora</span></span>
+        <span class="line"><span class="word italic">Belle</span></span>
+      </h1>
+      <p class="hero-sub reveal">The world is your oyster.</p>
+      <a href="#work" class="scroll-hint reveal" aria-label="Scroll to work">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- track content is generated in script.js -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track" id="tickerTrack"></div>
+    </div>
+
+    <section class="work" id="work">
+      <div class="section-head reveal">
+        <h2>Experience</h2>
+        <p>Click to open a category.</p>
+      </div>
+      <ul class="index" id="index"></ul>
+    </section>
+
+    <section class="about" id="about">
+      <figure class="about-photo reveal">
+        <img src=assets/portrait.JPG alt="Portrait of Flora Belle">
+        <figcaption>Flora Belle</figcaption>
+      </figure>
+      <div class="about-text">
+        <p class="eyebrow reveal">About</p>
+        <h2 class="reveal">Speak Boldy.</h2>
+        <p class="reveal">Hello! My name is Flora Belle Easley and I have a passion for all things media. Whether you are looking to build your brand, strengthen your online prescence, or bring a creative idea to life, I would be delighted to be a part of your story. I am always up for a challenge and am excited to continue learning and expanding my skills with each unique opportunity.</p>
+        <p class="reveal">I believe in hard work, ambition, and speaking boldly.</p>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <p class="eyebrow reveal">Contact</p>
+      <h2 class="reveal">Let's tell a story together.</h2>
+      <a class="contact-mail reveal" href="mailto:florabelleeasley17@gmail.com" data-hover>florabelleeasley17@gmail.com</a>
+      <div class="contact-links reveal">
+        <a href="https://www.linkedin.com/in/flora-belle-easley-3926b73b4/" data-hover>LinkedIn</a>
+        <a href="https://www.instagram.com/syocbyflorabelle/" data-hover>Instagram</a>
+        <a href="#" data-hover>Resume</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>© 2026 Flora Belle Easley</span>
+  </footer>
+
+  <!-- populated by openCategory() in script.js -->
+  <div class="overlay" id="overlay" aria-hidden="true">
+    <div class="overlay-inner">
+      <button class="overlay-close" id="overlayClose" aria-label="Close">&times;</button>
+      <p class="overlay-num" id="overlayNum"></p>
+      <h3 class="overlay-title" id="overlayTitle"></h3>
+      <p class="overlay-desc" id="overlayDesc"></p>
+      <div class="overlay-gallery" id="overlayGallery"></div>
+      <div class="overlay-nav">
+        <button id="prevCat" data-hover>&larr; Previous</button>
+        <button id="nextCat" data-hover>Next &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
