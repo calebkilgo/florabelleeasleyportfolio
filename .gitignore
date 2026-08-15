@@ -1,0 +1,8 @@
+__pycache__/
+
+# Raw camera video. GitHub hard-rejects any file over 100 MB, and these are
+# 4K originals running to gigabytes. Keep them on disk, but publish compressed
+# web versions instead - see assets/work/README.md.
+assets/work/interviews/MVI_8778-001.MP4
+assets/work/interviews/MVI_8780-002.MP4
+assets/work/interviews/MVI_8823.MP4

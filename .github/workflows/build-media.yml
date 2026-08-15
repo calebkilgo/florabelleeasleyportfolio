@@ -1,0 +1,31 @@
+name: Rebuild image manifest
+
+# Regenerates assets/manifest.js whenever images are added or removed, so
+# dropping files into assets/work/ and pushing is all that's needed.
+on:
+  push:
+    branches: [master]
+    paths: ["assets/work/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - run: node .github/build-media.mjs
+
+      - name: Commit manifest if it changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/manifest.js
+          git diff --staged --quiet || git commit -m "Rebuild image manifest"
+          git push

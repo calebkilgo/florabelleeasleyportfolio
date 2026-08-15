@@ -351,24 +351,170 @@ body.loaded .hero-name .line:nth-child(2) .word { transition-delay: 0.12s; }
   margin: 0.4rem 0 1rem;
 }
 .overlay-desc { max-width: 560px; color: var(--muted); margin-bottom: 2.6rem; }
+
+/* pulls up against the blurb's 2.6rem, leaving 1.4rem between the two */
+.overlay-social { margin-top: -1.2rem; margin-bottom: 2.6rem; }
+.overlay-social:empty { display: none; } /* categories without a profile */
+.ig-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.95rem 0.5rem 0.7rem;
+  border: 1px solid rgba(46, 70, 54, 0.22);
+  border-radius: 999px;
+  color: var(--green);
+  text-decoration: none;
+  transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+.ig-link:hover {
+  color: var(--blush);
+  border-color: rgba(196, 103, 126, 0.45);
+  background: rgba(196, 103, 126, 0.06);
+}
+.ig-glyph {
+  width: 18px; height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+}
+.ig-glyph .ig-dot { fill: currentColor; stroke: none; }
+.ig-handle {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+}
 .overlay-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.2rem;
 }
 .overlay-gallery figure { margin: 0; }
-.overlay-gallery img {
+.overlay-gallery img,
+.overlay-gallery video {
   width: 100%; aspect-ratio: 4 / 5;
   object-fit: cover;
   border-radius: 2px;
   filter: saturate(0.85);
   transition: transform 0.4s ease, filter 0.4s ease;
 }
+.overlay-gallery video { background: var(--ink); }
 .overlay-gallery img:hover { transform: scale(1.02); filter: saturate(1); }
-.overlay-gallery figcaption {
-  font-size: 0.75rem;
+/* videos don't scale on hover - it would fight with the playback controls */
+.overlay-gallery video:hover { filter: saturate(1); }
+
+/* a PDF read in place, using the browser's own viewer inside the tile */
+.doc-embed {
+  position: relative;
+  width: 100%; aspect-ratio: 4 / 5;
+  background: var(--sand);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.doc-frame {
+  width: 100%; height: 100%;
+  border: 0;
+  display: block;
+}
+.doc-expand {
+  position: absolute;
+  right: 0.6rem; bottom: 0.6rem;
+  z-index: 2; /* stay clickable above the iframe */
+  font-family: var(--sans);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: rgba(34, 48, 42, 0.85);
+  border: none;
+  border-radius: 2px;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease, background 0.3s ease;
+}
+.doc-embed:hover .doc-expand,
+.doc-expand:focus-visible { opacity: 1; }
+.doc-expand:hover { background: var(--green); }
+/* touch devices get no hover, so the button has to stay visible */
+@media (hover: none) {
+  .doc-expand { opacity: 1; }
+}
+
+/* full-size reader layered above the category overlay */
+.doc-viewer {
+  position: fixed; inset: 0;
+  z-index: 200;
+  display: none;
+  flex-direction: column;
+  background: rgba(34, 48, 42, 0.92);
+  padding: clamp(1rem, 4vw, 3rem);
+}
+.doc-viewer.open { display: flex; }
+.doc-viewer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+}
+.doc-viewer-title {
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  color: var(--paper);
+}
+.doc-viewer-close {
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--paper);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 0.4rem;
+}
+.doc-viewer-frame {
+  flex: 1;
+  width: 100%;
+  border: 0;
+  border-radius: 2px;
+  background: var(--paper);
+}
+
+/* fallback tile where the browser has no built-in PDF viewer */
+.overlay-gallery .doc-card {
+  width: 100%; aspect-ratio: 4 / 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  padding: 1.6rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--green);
+  background: var(--sand);
+  border-radius: 2px;
+  transition: transform 0.4s ease, background 0.4s ease;
+}
+.overlay-gallery .doc-card:hover { transform: scale(1.02); background: #DED3C3; }
+.doc-kind {
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--blush);
+}
+.doc-name {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  line-height: 1.25;
+  /* long filenames shouldn't push the card out of shape */
+  overflow-wrap: anywhere;
+}
+.doc-open {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
   color: var(--muted);
-  margin-top: 0.5rem;
 }
 .overlay-nav {
   display: flex; justify-content: space-between;
