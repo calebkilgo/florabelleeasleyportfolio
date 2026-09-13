@@ -387,31 +387,76 @@ body.loaded .hero-name .line:nth-child(2) .word { transition-delay: 0.12s; }
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.2rem;
+  align-items: start; /* tiles keep their own height instead of stretching to the row */
 }
 .overlay-gallery figure { margin: 0; }
+/* Tiles take the shape of what is in them. Forcing one rectangle on everything
+   cropped the sides off square posts and wide designs, so nothing here is cut
+   to fit - the grid rows are uneven instead. */
 .overlay-gallery img,
 .overlay-gallery video {
-  width: 100%; aspect-ratio: 4 / 5;
-  object-fit: cover;
+  width: 100%;
+  display: block;
   border-radius: 2px;
   filter: saturate(0.85);
   transition: transform 0.4s ease, filter 0.4s ease;
 }
-.overlay-gallery video { background: var(--ink); }
+.overlay-gallery img { height: auto; }
+/* the clip's own shape is set in openCategory(); this holds the space until
+   the cover loads, and contain keeps the picture whole in the meantime */
+.overlay-gallery video {
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
+  background: var(--ink);
+}
 .overlay-gallery img:hover { transform: scale(1.02); filter: saturate(1); }
 /* videos don't scale on hover - it would fight with the playback controls */
 .overlay-gallery video:hover { filter: saturate(1); }
 
+/* A cover image makes a video tile read as a photo, so it wears a play mark
+   until playback starts. Drawn in pseudo-elements: ::before is the disc,
+   ::after the triangle sitting on it. */
+.overlay-gallery .video-fig { position: relative; }
+.overlay-gallery .video-fig::before,
+.overlay-gallery .video-fig::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  pointer-events: none; /* the click belongs to the video underneath */
+  transition: opacity 0.35s ease;
+}
+.overlay-gallery .video-fig::before {
+  width: 62px; height: 62px;
+  margin: -31px 0 0 -31px;
+  border-radius: 50%;
+  background: rgba(250, 247, 242, 0.88);
+}
+.overlay-gallery .video-fig::after {
+  margin: -9px 0 0 -6px; /* nudged right of centre so the triangle looks centred */
+  border-style: solid;
+  border-width: 9px 0 9px 15px;
+  border-color: transparent transparent transparent var(--green);
+}
+.overlay-gallery .video-fig.playing::before,
+.overlay-gallery .video-fig.playing::after { opacity: 0; }
+
 /* a PDF read in place, using the browser's own viewer inside the tile */
 .doc-embed {
   position: relative;
-  width: 100%; aspect-ratio: 4 / 5;
+  width: 100%;
+  /* the page's own shape, measured at build time; 4:5 until it is known */
+  aspect-ratio: var(--doc-ratio, 0.8);
   background: var(--sand);
   border-radius: 2px;
   overflow: hidden;
 }
+/* Laid out wide and scaled down to the tile rather than rendered at tile size -
+   see docEmbed() in script.js for why. --doc-scale comes from there. */
 .doc-frame {
-  width: 100%; height: 100%;
+  width: 1400px; /* DOC_FRAME_WIDTH in script.js */
+  height: calc(1400px / var(--doc-ratio, 0.8));
+  transform: scale(var(--doc-scale, 1));
+  transform-origin: top left;
   border: 0;
   display: block;
 }

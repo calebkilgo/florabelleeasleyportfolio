@@ -5,12 +5,16 @@ window.PORTFOLIO_MEDIA = {
     {
       "src": "assets/work/alabama-living-real-estate/1_Name%20tag.pdf",
       "type": "doc",
-      "caption": "Name tag"
+      "caption": "Name tag",
+      "w": 216,
+      "h": 108
     },
     {
       "src": "assets/work/alabama-living-real-estate/2_Copy%20of%204x4%20Signs.pdf",
       "type": "doc",
-      "caption": "Copy of 4x4 Signs"
+      "caption": "Copy of 4x4 Signs",
+      "w": 3456,
+      "h": 3456
     },
     {
       "src": "assets/work/alabama-living-real-estate/2.png",
@@ -20,7 +24,9 @@ window.PORTFOLIO_MEDIA = {
     {
       "src": "assets/work/alabama-living-real-estate/3_Copy%20of%20ALRE%20Business%20Cards.pdf",
       "type": "doc",
-      "caption": "Copy of ALRE Business Cards"
+      "caption": "Copy of ALRE Business Cards",
+      "w": 252,
+      "h": 144
     },
     {
       "src": "assets/work/alabama-living-real-estate/3.png",
@@ -30,7 +36,9 @@ window.PORTFOLIO_MEDIA = {
     {
       "src": "assets/work/alabama-living-real-estate/4_OPEN%20HOUSE.pdf",
       "type": "doc",
-      "caption": "OPEN HOUSE"
+      "caption": "OPEN HOUSE",
+      "w": 900,
+      "h": 472
     },
     {
       "src": "assets/work/alabama-living-real-estate/4.png",
@@ -40,7 +48,9 @@ window.PORTFOLIO_MEDIA = {
     {
       "src": "assets/work/alabama-living-real-estate/5_holidays!%20(1080%20x%201080%20px).pdf",
       "type": "doc",
-      "caption": "holidays! (1080 x 1080 px)"
+      "caption": "holidays! (1080 x 1080 px)",
+      "w": 810,
+      "h": 810
     },
     {
       "src": "assets/work/alabama-living-real-estate/5.png",
@@ -58,8 +68,39 @@ window.PORTFOLIO_MEDIA = {
       "caption": ""
     }
   ],
-  "backdrops": [],
+  "backdrops": [
+    {
+      "src": "assets/work/backdrops/1.png",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/backdrops/2.png",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/backdrops/Spotlight.jpg",
+      "type": "image",
+      "caption": "Spotlight"
+    },
+    {
+      "src": "assets/work/backdrops/syoc%20backdrop.jpg",
+      "type": "image",
+      "caption": "syoc backdrop"
+    }
+  ],
   "bewell-nutrition": [
+    {
+      "src": "assets/work/bewell-nutrition/1%20(1).png",
+      "type": "image",
+      "caption": "(1)"
+    },
+    {
+      "src": "assets/work/bewell-nutrition/1%20(2).png",
+      "type": "image",
+      "caption": "(2)"
+    },
     {
       "src": "assets/work/bewell-nutrition/1.png",
       "type": "image",
@@ -69,6 +110,21 @@ window.PORTFOLIO_MEDIA = {
       "src": "assets/work/bewell-nutrition/2%20(1).png",
       "type": "image",
       "caption": "(1)"
+    },
+    {
+      "src": "assets/work/bewell-nutrition/2%20(2).png",
+      "type": "image",
+      "caption": "(2)"
+    },
+    {
+      "src": "assets/work/bewell-nutrition/2%20(3).png",
+      "type": "image",
+      "caption": "(3)"
+    },
+    {
+      "src": "assets/work/bewell-nutrition/2%20(4).png",
+      "type": "image",
+      "caption": "(4)"
     },
     {
       "src": "assets/work/bewell-nutrition/2.png",
@@ -93,10 +149,133 @@ window.PORTFOLIO_MEDIA = {
     {
       "src": "assets/work/bewell-nutrition/Trifold%20for%20soccer%20team.pdf",
       "type": "doc",
-      "caption": "Trifold for soccer team"
+      "caption": "Trifold for soccer team",
+      "w": 792,
+      "h": 612
     }
   ],
-  "camp-skyline-ranch": [],
+  "camp-skyline-ranch": [
+    {
+      "src": "assets/work/camp-skyline-ranch/DaA-p0bxsMm_1.mp4",
+      "type": "video",
+      "caption": "DaA p0bxsMm 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DaBfqKlCSPL_1.mp4",
+      "type": "video",
+      "caption": "DaBfqKlCSPL 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DabkviDio2m_1.mp4",
+      "type": "video",
+      "caption": "DabkviDio2m 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DaeAAGhi65G_1.mp4",
+      "type": "video",
+      "caption": "DaeAAGhi65G 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DaJlt0FCLpa_1.mp4",
+      "type": "video",
+      "caption": "DaJlt0FCLpa 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DaL_OODidZx_1.mp4",
+      "type": "video",
+      "caption": "DaL OODidZx 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DalRmuECy7y_1.mp4",
+      "type": "video",
+      "caption": "DalRmuECy7y 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DaOgKE0C9rr_1.mp4",
+      "type": "video",
+      "caption": "DaOgKE0C9rr 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DaQ7NH6iP8U_1.mp4",
+      "type": "video",
+      "caption": "DaQ7NH6iP8U 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DaRMz1Fispb_1.mp4",
+      "type": "video",
+      "caption": "DaRMz1Fispb 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DaTsUiaij0C_1.mp4",
+      "type": "video",
+      "caption": "DaTsUiaij0C 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DaY-tBkCqAP_1.mp4",
+      "type": "video",
+      "caption": "DaY tBkCqAP 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DaY4vhDiyAt_1.mp4",
+      "type": "video",
+      "caption": "DaY4vhDiyAt 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DZ_GKbRP1un_1.mp4",
+      "type": "video",
+      "caption": "DZ GKbRP1un 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DZ0ziuCi5DU_1.mp4",
+      "type": "video",
+      "caption": "DZ0ziuCi5DU 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DZ3fBNniNSd_1.mp4",
+      "type": "video",
+      "caption": "DZ3fBNniNSd 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DZ5DhTcRsKZ_1.mp4",
+      "type": "video",
+      "caption": "DZ5DhTcRsKZ 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DZ6FyfTCd_i_1.mp4",
+      "type": "video",
+      "caption": "DZ6FyfTCd i 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DZ8dVOXKPWf_1.mp4",
+      "type": "video",
+      "caption": "DZ8dVOXKPWf 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DZ09mRlijTZ_1.mp4",
+      "type": "video",
+      "caption": "DZ09mRlijTZ 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DZ23NjOCo5L_1.mp4",
+      "type": "video",
+      "caption": "DZ23NjOCo5L 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DZoFAgViuG9_1.mp4",
+      "type": "video",
+      "caption": "DZoFAgViuG9 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DZvqDiciyIN_1.mp4",
+      "type": "video",
+      "caption": "DZvqDiciyIN 1"
+    },
+    {
+      "src": "assets/work/camp-skyline-ranch/DZx-LLjCMh7_1.mp4",
+      "type": "video",
+      "caption": "DZx LLjCMh7 1"
+    }
+  ],
   "clubs": [
     {
       "src": "assets/work/clubs/1%20(1).png",
@@ -166,12 +345,33 @@ window.PORTFOLIO_MEDIA = {
       "caption": "FPCS Magazine"
     }
   ],
-  "interviews": [],
+  "interviews": [
+    {
+      "src": "assets/work/interviews/01%20-%20Interview.mp4",
+      "type": "video",
+      "caption": "Interview",
+      "poster": "assets/work/interviews/01%20-%20Interview.jpg"
+    },
+    {
+      "src": "assets/work/interviews/02%20-%20Interview.mp4",
+      "type": "video",
+      "caption": "Interview",
+      "poster": "assets/work/interviews/02%20-%20Interview.jpg"
+    },
+    {
+      "src": "assets/work/interviews/03%20-%20Interview.mp4",
+      "type": "video",
+      "caption": "Interview",
+      "poster": "assets/work/interviews/03%20-%20Interview.jpg"
+    }
+  ],
   "pete-davis-for-mayor": [
     {
       "src": "assets/work/pete-davis-for-mayor/1_MEET.pdf",
       "type": "doc",
-      "caption": "MEET"
+      "caption": "MEET",
+      "w": 810,
+      "h": 1440
     },
     {
       "src": "assets/work/pete-davis-for-mayor/1.png",
@@ -181,7 +381,9 @@ window.PORTFOLIO_MEDIA = {
     {
       "src": "assets/work/pete-davis-for-mayor/2_q%20%26%20a.pdf",
       "type": "doc",
-      "caption": "q & a"
+      "caption": "q & a",
+      "w": 810,
+      "h": 1012
     },
     {
       "src": "assets/work/pete-davis-for-mayor/2.png",
@@ -191,12 +393,16 @@ window.PORTFOLIO_MEDIA = {
     {
       "src": "assets/work/pete-davis-for-mayor/3_Endorsement%20graphics.pdf",
       "type": "doc",
-      "caption": "Endorsement graphics"
+      "caption": "Endorsement graphics",
+      "w": 705,
+      "h": 591
     },
     {
       "src": "assets/work/pete-davis-for-mayor/4_poll%20announcement.pdf",
       "type": "doc",
-      "caption": "poll announcement"
+      "caption": "poll announcement",
+      "w": 810,
+      "h": 1012
     },
     {
       "src": "assets/work/pete-davis-for-mayor/come%20to%20event-2.png",
@@ -211,6 +417,41 @@ window.PORTFOLIO_MEDIA = {
       "caption": "Copy of DSC 4145"
     },
     {
+      "src": "assets/work/photography/DSC_0398.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/DSC_0499.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/DSC_0535.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/DSC_0550.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/DSC_0568.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/DSC_0661.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/DSC_0672.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
       "src": "assets/work/photography/DSC_4244.JPG",
       "type": "image",
       "caption": ""
@@ -221,12 +462,147 @@ window.PORTFOLIO_MEDIA = {
       "caption": ""
     },
     {
+      "src": "assets/work/photography/DSC_4261.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/DSC_4289.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/DSC_4342.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/DSC_4800.JPG",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/DSC_6493.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/DSC_6518.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/DSC_6533.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/DSC_6534.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/DSC_6555.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
       "src": "assets/work/photography/DSC_6570.jpg",
       "type": "image",
       "caption": ""
     },
     {
+      "src": "assets/work/photography/DSC_6588%20(1).jpg",
+      "type": "image",
+      "caption": "DSC 6588 (1)"
+    },
+    {
+      "src": "assets/work/photography/DSC_6591.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
       "src": "assets/work/photography/DSC_6639.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/DSC_6883.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/DSC_6887.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/DSC_7644.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/DSC_7671%20(1).jpg",
+      "type": "image",
+      "caption": "DSC 7671 (1)"
+    },
+    {
+      "src": "assets/work/photography/DSC_7678.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/IMG_1087.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/IMG_1089.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/IMG_1094.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/IMG_1099.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/IMG_1115.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/IMG_1123.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/IMG_1124.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/IMG_1135.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/IMG_1148.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/IMG_3131.jpg",
+      "type": "image",
+      "caption": ""
+    },
+    {
+      "src": "assets/work/photography/IMG_6317.JPG",
       "type": "image",
       "caption": ""
     }
@@ -236,37 +612,51 @@ window.PORTFOLIO_MEDIA = {
     {
       "src": "assets/work/suite-k-salon-spa/1_TREN.pdf",
       "type": "doc",
-      "caption": "TREN"
+      "caption": "TREN",
+      "w": 810,
+      "h": 810
     },
     {
       "src": "assets/work/suite-k-salon-spa/2_spray%20tans.pdf",
       "type": "doc",
-      "caption": "spray tans"
+      "caption": "spray tans",
+      "w": 810,
+      "h": 810
     },
     {
       "src": "assets/work/suite-k-salon-spa/3_booth%20renters.pdf",
       "type": "doc",
-      "caption": "booth renters"
+      "caption": "booth renters",
+      "w": 810,
+      "h": 1012
     },
     {
       "src": "assets/work/suite-k-salon-spa/4_price%20list.pdf",
       "type": "doc",
-      "caption": "price list"
+      "caption": "price list",
+      "w": 612,
+      "h": 792
     },
     {
       "src": "assets/work/suite-k-salon-spa/5_Beauty%20Salon%20Promotion%20Instagram%20post.pdf",
       "type": "doc",
-      "caption": "Beauty Salon Promotion Instagram post"
+      "caption": "Beauty Salon Promotion Instagram post",
+      "w": 810,
+      "h": 810
     },
     {
       "src": "assets/work/suite-k-salon-spa/6_CUTS%26%20COLOR.pdf",
       "type": "doc",
-      "caption": "CUTS& COLOR"
+      "caption": "CUTS& COLOR",
+      "w": 810,
+      "h": 810
     },
     {
       "src": "assets/work/suite-k-salon-spa/7_SUITE%20K%20SALON%20%2B%20SPA.pdf",
       "type": "doc",
-      "caption": "SUITE K SALON + SPA"
+      "caption": "SUITE K SALON + SPA",
+      "w": 810,
+      "h": 810
     }
   ],
   "tech-team": [
@@ -281,6 +671,11 @@ window.PORTFOLIO_MEDIA = {
       "caption": ""
     }
   ],
-  "voiceovers": [],
-  "yearbook-designs": []
+  "voiceovers": [
+    {
+      "src": "assets/work/voiceovers/Bruce's%20commercial.mp4",
+      "type": "video",
+      "caption": "Bruce's commercial"
+    }
+  ]
 };

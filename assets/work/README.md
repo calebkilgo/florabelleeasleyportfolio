@@ -17,7 +17,6 @@ matching folder and they appear in that category's gallery.
 | `backdrops` | Backdrops |
 | `tech-team` | Tech Team |
 | `voiceovers` | Voiceovers |
-| `yearbook-designs` | Yearbook Designs |
 | `fort-payne-city-schools` | Fort Payne City Schools |
 
 ## After dropping files in
@@ -38,6 +37,49 @@ If you ever want to rebuild the manifest by hand: `node .github/build-media.mjs`
 - Documents: `.pdf` — embedded in the tile, scrollable in place
 
 Anything else in a folder is ignored, so stray files do no harm.
+
+## Video has to be compressed first
+
+Camera originals are far too big for a website. A 4K clip runs about 120 Mbps —
+a visitor's browser would buffer endlessly and burn gigabytes of their data on
+one video. GitHub also rejects any file over 100 MB outright, and Vercel
+deploys from the repo, so an oversized file never reaches the site at all.
+
+Export or convert to **1080p H.264** before dropping a video in. With ffmpeg:
+
+```
+ffmpeg -i INPUT.MP4 -vf "scale=-2:1080" -c:v libx264 -preset medium -crf 24 \
+  -c:a aac -b:a 128k -movflags +faststart OUTPUT.mp4
+```
+
+`-movflags +faststart` matters: it moves the index to the front of the file so
+playback can begin before the whole thing downloads.
+
+## Cover images for video
+
+A video with no cover sits on the page as a black box. To give one a cover,
+drop in an image **named after the video**:
+
+```
+01 - Interview.mp4
+01 - Interview.jpg     <- the cover for it
+```
+
+The image becomes that clip's cover and does not get a tile of its own, so
+nothing shows up twice. Any image type works, and a designed title card works
+just as well as a still from the clip — to replace a cover, overwrite the file
+and keep the name.
+
+The interview covers already in place are frames pulled from the clips. To grab
+one from a different moment (`-ss` is how many seconds in):
+
+```
+ffmpeg -ss 30 -i "01 - Interview.mp4" -vf "thumbnail=300,scale=1280:-2" \
+  -frames:v 1 -q:v 3 -y "01 - Interview.jpg"
+```
+
+Files over 100 MB are skipped by the scanner, which prints what it skipped and
+why — so a too-big video shows up as a warning rather than a broken tile.
 
 A PDF reads inside its own square: scroll through the pages without leaving the
 site, or hit **Expand** for a full-size reader (Escape or the backdrop closes

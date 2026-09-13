@@ -4,22 +4,20 @@
 // `instagram` is optional: give a category a profile URL and its overlay shows
 // an Instagram link. Leave it off and no icon appears.
 //
-// TODO: replace titles, tags, and blurbs with real work
 const categories = [
-  { title: "Student Spotlight", tag: "Broadcasting", folder: "student-spotlight", blurb: "Student Spotlight is a self-hosted segment on a live radio show. Each guest is a student at Fort Payne High School at the time of the interview." },
-  { title: "Interviews", tag: "Broadcasting", folder: "interviews", blurb: "Targeted pitches built around what a specific reporter actually covers." },
-  { title: "Alabama Living Real Estate", tag: "Public Relations", folder: "alabama-living-real-estate", instagram: "https://www.instagram.com/alabamalivingco/", blurb: "Below are a few designs that Flora Belle has created for the Best of Alabama winning real estate agency, Alabama Living Real Estate." },
-  { title: "Pete Davis for Mayor Campaign", tag: "Campaign Manager", folder: "pete-davis-for-mayor", blurb: "Below are a few graphics and promotional materials Flora Belle created while serving as Campaign Manager for the Pete Davis for Mayor campaign during the municipal election." },
-  { title: "Camp Skyline Ranch", tag: "Social Media", folder: "camp-skyline-ranch", instagram: "https://www.instagram.com/campskyline/", blurb: "Below are several reels Flora Belle created during her time as a Social Media Intern at Camp Skyline Ranch for Girls, highlighting camp life, activities, and special moments." },
-  { title: "BeWell Nutrition", tag: "Social Media", folder: "bewell-nutrition", instagram: "https://www.instagram.com/bewellnutrition_/", blurb: "Below are a few designs Flora Belle has created for Be Well Nutrition, including the brand’s logo." },
-  { title: "Clubs", tag: "Public Relations", folder: "clubs", blurb: "Below are several designs Flora Belle has created for organizations including Key Club, Fort Payne High School’s Broadcasting Program, and Future Business Leaders of America." },
-  { title: "Suite K Salon + Spa", tag: "Social Media", folder: "suite-k-salon-spa", instagram: "https://www.instagram.com/suiteksalon/", blurb: "Below are a few designs Flora Belle created to promote Suite K Salon + Spa, an award-winning local salon and spa." },
-  { title: "Photography", tag: "Content", folder: "photography", blurb: "Below are a few photos taken by Flora Belle during her time as a school photographer for the yearbook staff." },
-  { title: "Backdrops", tag: "Graphic Design", folder: "backdrops", blurb: "Below are backdrop designs created by Flora Belle." },
-  { title: "Tech Team", tag: "Content", folder: "tech-team", blurb: "Below are graphics created by Flora Belle that earned 1st place in the regional tech fair." },
-  { title: "Voiceovers", tag: "Broadcasting", folder: "voiceovers", blurb: "Below are a few videos featuring voiceover work by Flora Belle." },
-  { title: "Yearbook Designs", tag: "Graphic Design", folder: "yearbook-designs", blurb: "The Fort Payne High School Yearbook Staff is a team of 10 students that craft and curate the annual yearbook. The book is made completly from scratch from cover to cover. Below are a few pages that Flora Belle has designed. " },
-  { title: "Fort Payne City Schools", tag: "Advertising", folder: "fort-payne-city-schools", blurb: "Below is a promotional flyer designed by Flora Belle that was selected to be featured in the DeKalb Living Magazine to promote Fort Payne City Schools." },
+  { title: "Student Spotlight", tag: "Broadcasting", folder: "student-spotlight", blurb: "Student Spotlight is a self-hosted segment on a live radio show that features a Fort Payne High School student guest each week. Below are several interviews produced during my time in high school!" },
+  { title: "Interviews", tag: "Broadcasting", folder: "interviews", blurb: "Below are a few interviews I have conducted and participated in." },
+  { title: "Alabama Living Real Estate", tag: "Public Relations", folder: "alabama-living-real-estate", instagram: "https://www.instagram.com/alabamalivingco/", blurb: "Below are a few designs that I have created during my time working as a marketing manager for the Best of Alabama winning real estate agency, Alabama Living Real Estate." },
+  { title: "Pete Davis for Mayor Campaign", tag: "Campaign Manager", folder: "pete-davis-for-mayor", blurb: "Below are a few graphics, mailers, and promotional materials I have created while serving as Campaign Manager for the Pete Davis for Mayor campaign during my hometown municipal election." },
+  { title: "Camp Skyline Ranch", tag: "Social Media", folder: "camp-skyline-ranch", instagram: "https://www.instagram.com/campskyline/", blurb: "Below are several reels I shot and edited while working as a Social Media Intern at Camp Skyline Ranch for Girls, highlighting camp life, activities, and special moments." },
+  { title: "BeWell Nutrition", tag: "Social Media", folder: "bewell-nutrition", instagram: "https://www.instagram.com/bewellnutrition_/", blurb: "Below are a few posts, recipe graphics, and trifolds I have created while working as the Social Media Manager for Be Well Nutrition." },
+  { title: "Clubs", tag: "Public Relations", folder: "clubs", blurb: "Below are several graphics I have designed for various school organizations including Key Club, the Broadcasting Program, and Future Business Leaders of America." },
+  { title: "Suite K Salon + Spa", tag: "Social Media", folder: "suite-k-salon-spa", instagram: "https://www.instagram.com/suiteksalon/", blurb: "Below are a few promotional designs, price lists, and social media posts I have created for the award-winning Suite K Salon + Spa." },
+  { title: "Photography", tag: "Content", folder: "photography", blurb: "Below are a few photos I have taken during my time serving as a school photographer for the Fort Payne High School Yearbook Staff." },
+  { title: "Backdrops", tag: "Graphic Design", folder: "backdrops", blurb: "Below are a few backdrop designs I have created for various events." },
+  { title: "Tech Team", tag: "Content", folder: "tech-team", blurb: "Below are self-designed graphics and presentations that earned 1st place in the regional tech fair." },
+  { title: "Voiceovers", tag: "Broadcasting", folder: "voiceovers", blurb: "Below are a few videos featuring some of my voiceover work." },
+  { title: "Fort Payne City Schools", tag: "Advertising", folder: "fort-payne-city-schools", blurb: "Below is a self-designed promotional flyer that was selected to be featured in the DeKalb Living Magazine to promote Fort Payne City Schools." },
 ];
 
 // written by .github/build-media.mjs; empty if that script has never been run.
@@ -38,6 +36,36 @@ function typeOf(name) {
 
 // Filenames the camera made up. Kept in step with .github/build-media.mjs.
 const AUTO_NAME = /^(img|dsc|dscn|pxl|photo|image|screenshot|video|vid|mvimg)[\s_-]*\d+$/i;
+
+// "01 - Interview.mp4" -> "01 - interview", the key a video and its cover share
+function stemOf(name) {
+  return name.replace(/\.[^.]+$/, "").trim().toLowerCase();
+}
+
+// A video with no cover opens as a black box, so an image named after the video
+// — "01 - Interview.mp4" next to "01 - Interview.jpg" — becomes that video's
+// cover instead of a tile of its own. Kept in step with .github/build-media.mjs.
+function coversByStem(names) {
+  const videoStems = {};
+  names.forEach(function (name) {
+    if (typeOf(name) === "video") videoStems[stemOf(name)] = true;
+  });
+
+  const covers = {};
+  names.forEach(function (name) {
+    const stem = stemOf(name);
+    // first match wins, so a .jpg and .png of the same name can't fight over it
+    if (typeOf(name) === "image" && videoStems[stem] && !(stem in covers)) {
+      covers[stem] = name;
+    }
+  });
+  return covers;
+}
+
+// true for an image that belongs to a video rather than the gallery
+function isCover(name, covers) {
+  return typeOf(name) === "image" && stemOf(name) in covers;
+}
 
 // "03 - Spring Reel.jpg" -> "Spring Reel"; "IMG_4821.jpg" -> "" (no caption)
 function captionFrom(file) {
@@ -73,20 +101,45 @@ async function readFolder(folder) {
       return IMAGE_EXT.test(name) || VIDEO_EXT.test(name) || DOC_EXT.test(name);
     });
 
-  return Array.from(new Set(names))   // some servers link each file twice (icon + name)
-    .sort(collator.compare)
+  const unique = Array.from(new Set(names))   // some servers link each file twice (icon + name)
+    .sort(collator.compare);
+  const covers = coversByStem(unique);
+
+  return unique
+    .filter(function (name) { return !isCover(name, covers); })
     .map(function (name) {
-      return {
+      const item = {
         src: base + encodeURIComponent(name),
         type: typeOf(name),
         caption: captionFrom(name),
       };
+      const cover = covers[stemOf(name)];
+      if (item.type === "video" && cover) item.poster = base + encodeURIComponent(cover);
+      return item;
     });
 }
 
 const isLocalPreview =
   /^https?:$/.test(location.protocol) &&
   ["localhost", "127.0.0.1", "[::1]", "::1"].indexOf(location.hostname) !== -1;
+
+// A folder listing says how big a file is but nothing about the shape of the
+// page inside a PDF - that is measured at build time - so carry it across for
+// the files the manifest already knows. A PDF dropped in since the last build
+// falls back to a default tile shape until the manifest is rebuilt.
+function withKnownSizes(files, known) {
+  if (!known || !known.length) return files;
+
+  const sizes = {};
+  known.forEach(function (item) {
+    if (item.w && item.h) sizes[item.src] = item;
+  });
+
+  return files.map(function (item) {
+    const match = sizes[item.src];
+    return match ? Object.assign({ w: match.w, h: match.h }, item) : item;
+  });
+}
 
 async function refreshFromFolders() {
   const found = {};
@@ -95,7 +148,7 @@ async function refreshFromFolders() {
       const files = await readFolder(cat.folder);
       // an empty result usually means the server served something other than a
       // listing, so keep the manifest rather than blanking the category
-      if (files.length) found[cat.folder] = files;
+      if (files.length) found[cat.folder] = withKnownSizes(files, media[cat.folder]);
     } catch { /* not a listing server - manifest stands */ }
   }));
 
@@ -107,15 +160,37 @@ async function refreshFromFolders() {
 // PDF as a blank box, so those fall back to a link card instead.
 const canEmbedPdf = navigator.pdfViewerEnabled !== false;
 
+// The PDF viewer will not zoom out past a floor of its own, so a big page in a
+// tile-sized frame stops shrinking and spills over the sides - a 4x4 ft sign is
+// 48 inches across, far past that floor. The frame is laid out wide enough for
+// the viewer to fit any of these pages properly, then scaled down to the tile,
+// which keeps the whole page in view whatever size it was designed at.
+// 1400 clears the floor for the widest page here: a 48 inch sign is 4608 CSS
+// pixels across, and the viewer will not go below about a quarter of that.
+const DOC_FRAME_WIDTH = 1400; // px, matches .doc-frame in style.css
+
+const docScaler = new ResizeObserver(function (entries) {
+  entries.forEach(function (entry) {
+    const width = entry.contentRect.width;
+    if (width) entry.target.style.setProperty("--doc-scale", width / DOC_FRAME_WIDTH);
+  });
+});
+
 // A scrollable PDF inside the tile. #toolbar=0 hides the viewer chrome, which
 // is too cramped to use at tile size - the expand button covers that instead.
 function docEmbed(item, label) {
   const wrap = document.createElement("div");
   wrap.className = "doc-embed";
+  // the tile takes the page's shape, so nothing is cropped to fit a set box
+  if (item.w && item.h) wrap.style.setProperty("--doc-ratio", item.w / item.h);
+  docScaler.observe(wrap);
 
   const frame = document.createElement("iframe");
   frame.className = "doc-frame";
-  frame.src = item.src + "#toolbar=0&navpanes=0&view=FitH";
+  // Fit, not FitH: fitting the width alone leaves a page a hair too tall for the
+  // frame and the viewer puts a scrollbar down the edge of the tile for it.
+  // Multi-page documents still scroll - there the bar belongs.
+  frame.src = item.src + "#toolbar=0&navpanes=0&view=Fit";
   frame.title = label;
   frame.loading = "lazy";
   wrap.appendChild(frame);
@@ -277,6 +352,8 @@ function openCategory(i) {
   const items = files.length ? files : placeholders(cat, current);
 
   overlayGallery.innerHTML = "";
+  docScaler.disconnect(); // the tiles it was watching are gone; each new one re-registers
+
   items.forEach(function (item, p) {
     const fig = document.createElement("figure");
 
@@ -285,7 +362,32 @@ function openCategory(i) {
       video.src = item.src;
       video.controls = true;
       video.playsInline = true;
-      video.preload = "metadata";
+      if (item.poster) {
+        video.poster = item.poster;
+        video.preload = "none"; // the cover is already the still, so fetch nothing yet
+      } else {
+        video.preload = "metadata";
+      }
+      // The tile takes the clip's own shape, so a widescreen interview isn't
+      // boxed into a portrait tile and a vertical reel isn't squeezed into a
+      // landscape one. The cover gives the shape away without touching the
+      // video file; clips without one report it once metadata arrives.
+      function shapeTile(w, h) {
+        if (w && h) video.style.aspectRatio = w + " / " + h;
+      }
+      video.addEventListener("loadedmetadata", function () {
+        shapeTile(video.videoWidth, video.videoHeight);
+      });
+      if (item.poster) {
+        const probe = new Image();
+        probe.addEventListener("load", function () { shapeTile(probe.width, probe.height); });
+        probe.src = item.poster;
+      }
+
+      // a cover makes the tile read as a photo, so mark it playable until it runs
+      fig.className = "video-fig";
+      video.addEventListener("play", function () { fig.classList.add("playing"); });
+      video.addEventListener("pause", function () { fig.classList.remove("playing"); });
       fig.appendChild(video);
     } else if (item.type === "doc") {
       const label = item.caption || cat.title + " " + (p + 1);

@@ -6,7 +6,7 @@
 //
 //   node .github/build-media.mjs
 
-import { readdirSync, writeFileSync, statSync } from "node:fs";
+import { readdirSync, readFileSync, writeFileSync, statSync } from "node:fs";
 import { join, dirname, extname, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -25,6 +25,28 @@ function typeOf(name) {
   return "image";
 }
 
+// "01 - Interview.mp4" -> "01 - interview", the key a video and its cover share
+function stemOf(name) {
+  return basename(name, extname(name)).trim().toLowerCase();
+}
+
+// A video with no cover opens as a black box, so an image named after the video
+// — "01 - Interview.mp4" next to "01 - Interview.jpg" — becomes that video's
+// cover instead of a tile of its own. Kept in step with script.js.
+function coversByStem(names) {
+  const videoStems = new Set(names.filter((n) => typeOf(n) === "video").map(stemOf));
+
+  const covers = new Map();
+  for (const name of names) {
+    const stem = stemOf(name);
+    // first match wins, so a .jpg and .png of the same name can't fight over it
+    if (typeOf(name) === "image" && videoStems.has(stem) && !covers.has(stem)) {
+      covers.set(stem, name);
+    }
+  }
+  return covers;
+}
+
 // Filenames the camera or phone made up. No point showing these as captions.
 const AUTO_NAME = /^(img|dsc|dscn|pxl|photo|image|screenshot|video|vid|mvimg)[\s_-]*\d+$/i;
 
@@ -37,6 +59,23 @@ function captionFrom(file) {
     .trim();
   if (!stem || AUTO_NAME.test(stem)) return "";
   return stem;
+}
+
+// A PDF page carries its size in a MediaBox: "[x0 y0 x1 y1]", in points. These
+// designs run from 2:1 name tags to 48-inch signs, so a tile that knows the
+// page's shape can hold it whole instead of cropping every one to a common
+// rectangle. A PDF that keeps its MediaBox in a compressed object stream won't
+// match here; the tile falls back to a default shape, which is why this only
+// reports the size when it is certain of it.
+function pdfPageSize(file) {
+  const match = readFileSync(file)
+    .toString("latin1")
+    .match(/MediaBox\s*\[\s*([\d.+-]+)\s+([\d.+-]+)\s+([\d.+-]+)\s+([\d.+-]+)\s*\]/);
+  if (!match) return null;
+
+  const w = Math.abs(parseFloat(match[3]) - parseFloat(match[1]));
+  const h = Math.abs(parseFloat(match[4]) - parseFloat(match[2]));
+  return w > 0 && h > 0 ? { w: Math.round(w), h: Math.round(h) } : null;
 }
 
 // Sorts "2.jpg" before "10.jpg", which a plain string sort gets backwards.
@@ -57,7 +96,7 @@ function scan(slug) {
     return []; // folder not created yet - the page falls back to placeholders
   }
 
-  return entries
+  const files = entries
     .filter((name) => !name.startsWith(".") && statSync(join(dir, name)).isFile())
     .filter((name) => {
       const ext = extname(name).toLowerCase();
@@ -69,13 +108,28 @@ function scan(slug) {
       skipped.push({ path: slug + "/" + name, mb: bytes / 1048576 });
       return false;
     })
-    .sort(collator.compare)
-    .map((name) => ({
-      // encoded so spaces, "#", "&" etc. in filenames resolve as paths, not URL syntax
-      src: "assets/work/" + encodeURIComponent(slug) + "/" + encodeURIComponent(name),
-      type: typeOf(name),
-      caption: captionFrom(name),
-    }));
+    .sort(collator.compare);
+
+  // encoded so spaces, "#", "&" etc. in filenames resolve as paths, not URL syntax
+  const url = (name) =>
+    "assets/work/" + encodeURIComponent(slug) + "/" + encodeURIComponent(name);
+
+  const covers = coversByStem(files);
+
+  return files
+    .filter((name) => !(typeOf(name) === "image" && covers.has(stemOf(name))))
+    .map((name) => {
+      const item = { src: url(name), type: typeOf(name), caption: captionFrom(name) };
+
+      const cover = covers.get(stemOf(name));
+      if (item.type === "video" && cover) item.poster = url(cover);
+
+      if (item.type === "doc") {
+        const page = pdfPageSize(join(dir, name));
+        if (page) { item.w = page.w; item.h = page.h; }
+      }
+      return item;
+    });
 }
 
 const slugs = readdirSync(workDir, { withFileTypes: true })
