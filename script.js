@@ -28,6 +28,10 @@ const IMAGE_EXT = /\.(jpe?g|png|webp|gif|avif)$/i;
 const VIDEO_EXT = /\.(mp4|webm|mov|m4v)$/i;
 const DOC_EXT = /\.pdf$/i;
 
+// Matches MAX_BYTES in .github/build-media.mjs: GitHub refuses anything larger,
+// so a file this big can never reach the published site.
+const MAX_BYTES = 100 * 1024 * 1024;
+
 function typeOf(name) {
   if (VIDEO_EXT.test(name)) return "video";
   if (DOC_EXT.test(name)) return "doc";
@@ -101,8 +105,23 @@ async function readFolder(folder) {
       return IMAGE_EXT.test(name) || VIDEO_EXT.test(name) || DOC_EXT.test(name);
     });
 
-  const unique = Array.from(new Set(names))   // some servers link each file twice (icon + name)
+  const listed = Array.from(new Set(names))   // some servers link each file twice (icon + name)
     .sort(collator.compare);
+
+  // The published site never sees a file the build step rejected for being over
+  // 100 MB, so the preview should not either - otherwise a folder holding raw
+  // camera originals next to their web versions shows both, and the page sets
+  // about pulling metadata from gigabytes of video. A listing carries no sizes,
+  // so ask for them.
+  const sizes = await Promise.all(listed.map(function (name) {
+    return fetch(base + encodeURIComponent(name), { method: "HEAD" })
+      .then(function (head) { return Number(head.headers.get("content-length")); })
+      .catch(function () { return 0; }); // no answer - keep the file rather than hide it
+  }));
+
+  const unique = listed.filter(function (name, i) {
+    return !(sizes[i] > MAX_BYTES);
+  });
   const covers = coversByStem(unique);
 
   return unique

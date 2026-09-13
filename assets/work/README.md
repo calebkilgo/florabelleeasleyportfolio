@@ -55,6 +55,34 @@ ffmpeg -i INPUT.MP4 -vf "scale=-2:1080" -c:v libx264 -preset medium -crf 24 \
 `-movflags +faststart` matters: it moves the index to the front of the file so
 playback can begin before the whole thing downloads.
 
+That recipe suits a short clip. A long one needs a **bitrate budget** instead,
+because CRF has no idea how big the finished file will be — a 14 minute segment
+at CRF 24 lands near a gigabyte, ten times over the limit.
+
+Work out the budget from the runtime. Aiming at 85 MB, comfortably under the
+100 MB ceiling:
+
+```
+video kbps = (85 × 8192 ÷ runtime in seconds) − 96
+```
+
+For the 13–15 minute Student Spotlight segments that comes to roughly 650 kbps
+at 720p, which is what they are encoded at:
+
+```
+ffmpeg -i INPUT.mp4 -vf "scale=-2:720" -c:v libx264 -preset medium \
+  -b:v 650k -maxrate 950k -bufsize 1900k \
+  -c:a aac -b:a 96k -movflags +faststart OUTPUT.mp4
+```
+
+A talking head in front of a static camera holds up well at that rate — far
+better than fast-moving footage would. Check a frame before committing to a
+batch, and drop to `scale=-2:540` if a clip looks soft.
+
+Anything much longer than fifteen minutes stops being worth self-hosting: the
+files crowd the repo and visitors rarely watch that far. Put those on YouTube
+or Vimeo and link them instead.
+
 ## Cover images for video
 
 A video with no cover sits on the page as a black box. To give one a cover,

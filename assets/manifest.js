@@ -607,7 +607,44 @@ window.PORTFOLIO_MEDIA = {
       "caption": ""
     }
   ],
-  "student-spotlight": [],
+  "student-spotlight": [
+    {
+      "src": "assets/work/student-spotlight/01%20-%20Amy%20Maks.mp4",
+      "type": "video",
+      "caption": "Amy Maks",
+      "poster": "assets/work/student-spotlight/01%20-%20Amy%20Maks.jpg"
+    },
+    {
+      "src": "assets/work/student-spotlight/02%20-%20Jones%20Northcutt.mp4",
+      "type": "video",
+      "caption": "Jones Northcutt",
+      "poster": "assets/work/student-spotlight/02%20-%20Jones%20Northcutt.jpg"
+    },
+    {
+      "src": "assets/work/student-spotlight/03%20-%20JP%20Buffington.mp4",
+      "type": "video",
+      "caption": "JP Buffington",
+      "poster": "assets/work/student-spotlight/03%20-%20JP%20Buffington.jpg"
+    },
+    {
+      "src": "assets/work/student-spotlight/04%20-%20Lane%20Vinson.mp4",
+      "type": "video",
+      "caption": "Lane Vinson",
+      "poster": "assets/work/student-spotlight/04%20-%20Lane%20Vinson.jpg"
+    },
+    {
+      "src": "assets/work/student-spotlight/05%20-%20Patrick%20Buffington.mp4",
+      "type": "video",
+      "caption": "Patrick Buffington",
+      "poster": "assets/work/student-spotlight/05%20-%20Patrick%20Buffington.jpg"
+    },
+    {
+      "src": "assets/work/student-spotlight/06%20-%20Varsity%20Girls%20Soccer.mp4",
+      "type": "video",
+      "caption": "Varsity Girls Soccer",
+      "poster": "assets/work/student-spotlight/06%20-%20Varsity%20Girls%20Soccer.jpg"
+    }
+  ],
   "suite-k-salon-spa": [
     {
       "src": "assets/work/suite-k-salon-spa/1_TREN.pdf",
